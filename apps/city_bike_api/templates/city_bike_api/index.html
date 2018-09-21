@@ -8,6 +8,15 @@
 {% block content %}
 <div class="container">
     <h1>City Bike API</h1>
-    <h6>{{ networks }}</h6>
+    {% for network in network_list %}
+    <h2>{{ network.name.title }}</h2>
+    <h6>Company: {{ network.company.0 }}</h6>
+    <h6>Href: {{ network.href }}</h6>
+    <h6>ID: {{ network.id }}</h6>
+    {% for key, value in network.location.iteritems %}
+    <h6>{{ key.title }}: {{ value }}</h6>
+    {% endfor %}
+    {% endfor %}
+    <br>
 </div>
 {% endblock %}
