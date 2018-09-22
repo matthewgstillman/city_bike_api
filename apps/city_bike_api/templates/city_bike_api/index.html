@@ -8,6 +8,9 @@
 {% block content %}
 <div class="container">
     <h1>City Bike API</h1>
+    {{ session_company_url }}
+    <br>
+    {{ company_id_href_dict }}
     {% for network in network_list %}
     <h2>{{ network.name.title }}</h2>
     <h6>Company: {{ network.company.0 }}</h6>
