@@ -8,14 +8,14 @@
 {% block content %}
 <div class="container">
     <h1>City Bike API</h1>
-    {% for bikeshare in network %}
-        <h6>{{ bikeshare.name }}</h6>
+    {% for bikeshare in networks %}
+        <h6>{{ bikeshare }}</h6>
     {% endfor %}
-    <h6>{{ network.name }}</h6>
+    <h2>{{ network.name }}</h2>
     <a href="{{network.license.url}}"><h6>{{ network.license.url }}</h6></a>
     <h6>License Type: {{network.license.name}}</h6>
     {% for key, value in station.iteritems %}
-        {% if key == 'extra'%}
+        {% if key == 'Extra'%}
             <h6>{{ key.title }}</h6>
             {% for key, value in value.iteritems %}
                 <h6>{{ key.title }}: {{ value }}</h6>
