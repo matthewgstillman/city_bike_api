@@ -8,24 +8,34 @@
 {% block content %}
 <div class="container">
     <h1>City Bike API</h1>
-    {% for bikeshare in networks %}
-        <h6>{{ bikeshare }}</h6>
-    {% endfor %}
-    <h2>{{ network.name }}</h2>
-    <a href="{{network.license.url}}"><h6>{{ network.license.url }}</h6></a>
-    <h6>License Type: {{network.license.name}}</h6>
-    {% for key, value in station.iteritems %}
-        {% if key == 'Extra'%}
-            <h6>{{ key.title }}</h6>
-            {% for key, value in value.iteritems %}
-                <h6>{{ key.title }}: {{ value }}</h6>
-            {% endfor %}
-        <h6>{{ key.title }}: {{ value }}</h6>
+    {% for key, value in company_network.iteritems %}
+        {% if key == 'license'%}
+            <h6>License URL: <a href="{{ value.url }}">{{ value.url }}<a></h6>
+            <h6>License Type: {{ company_network.license.name }}</h6>
+        {% elif key == 'Location' %}
+        <h1>{{value.latitude}}</h1>
+        {% elif key == 'name' %}
+        <h1>{{value}}</h1>
         {% else %}
-        <h6>{{ key.title }}: {{ value }}</h6>
+            <h6>{{ key.title }}: {{ value }}</h6>
         {% endif %}
+        <br>
+        <h2>Stations</h2>
+        <br>
+        {% for bike_station in stations %}
+            <h4>{{bike_station.name}}</h4>
+            <h6>Address: {{bike_station.extra.address}}</h6>
+            <h6>Latitude: {{bike_station.latitude}}</h6>
+            <h6>Longitude: {{bike_station.longitude}}</h6>
+            <h6>Free Bikes: {{bike_station.free_bikes}}</h6>
+            <h6>Empty Slots: {{bike_station.empty_slots}}</h6>
+            <h6>Renting: {{bike_station.extra.renting}}</h6>
+            <h6>Returning: {{bike_station.extra.returning}}</h6>
+            <h6>Last Updated: {{bike_station.extra.last_updated}}</h6>
+            <h6>uID: {{bike_station.extra.uid}}</h6>
+            <br>
+        {% endfor %}
     {% endfor %}
-    <h6>Stations: {{ station }}</h6>
-    <h6>{{ network }}</h6>
+    <br>
 </div>
 {% endblock %}

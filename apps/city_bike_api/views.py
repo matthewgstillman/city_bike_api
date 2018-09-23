@@ -41,31 +41,35 @@ def index(request):
 def company(request):
     url = ("http://api.citybik.es/v2/networks/edinburgh-cycle-hire")
     networks = []
+    stations = []
     response = requests.get(url)
     company = response.json()
     # print("Company: " + str(company))
     company_network = company['network']
-    print("Compay Network: " + str(company_network))
+    print("Company Network: " + str(company_network))
     networks.append(company_network)
+    networks.append("\n")
     name = company_network['name']
     print("Name: " + str(name))
     i = 0
     for i in range(0, len(company_network)):
         station = company_network['stations'][i]
         # print("Station: " + str(station))
+        stations.append(station)
         i += 1
     print("Networks:\n " + str(networks))
     j = 0
-    for network in range(0, len(networks)):
-        print("NETWORK:\n" + str(network))
+    for j in range(0, len(networks)):
+        print("NETWORK:\n" + str(company_network))
         j += 1
     context = {
         'company': company,
         'company_network': company_network,
-        'network': network,
+        # 'network': network,
         'networks': networks,
         'name': name,
         'station': station,
+        'stations': stations,
     }
     return render(request, 'city_bike_api/company.html', context)
 
