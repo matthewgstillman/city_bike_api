@@ -39,7 +39,10 @@ def index(request):
     return render(request, 'city_bike_api/index.html', context)
 
 def company(request):
-    url = ("http://api.citybik.es/v2/networks/edinburgh-cycle-hire")
+    url_tail = str(request.session['href'])
+    url_root = "http://api.citybik.es"
+    # url = ("http://api.citybik.es/v2/networks/edinburgh-cycle-hire")
+    url = str(url_root) + str(url_tail)
     networks = []
     stations = []
     response = requests.get(url)
